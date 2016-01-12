@@ -1,0 +1,6 @@
+<% unless @comment.nil? || @comment.id.nil? %>
+  $("#comment_<%= @comment.id.to_s %>_body_div").html("<%= @comment.message %>"); 
+<% else   %>
+  $("#blog_<%= @blog.id %>_new_comment_form_div").hide();
+  $("#blog_<%= @blog.id %>_new_comment_link_div").fadeIn();
+<% end %>

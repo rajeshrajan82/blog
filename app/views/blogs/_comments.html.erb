@@ -1,0 +1,9 @@
+<div class="section">
+  <div class="container">
+    <div class="row">
+      <div id="commentsDiv" class="col-md-6 product-details">
+        <%= render :partial => 'comments/list', :locals => { :comments => blog.get_comments(current_user), :blog => blog} %>
+      </div>
+    </div>
+  </div>
+</div>

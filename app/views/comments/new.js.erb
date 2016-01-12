@@ -1,0 +1,8 @@
+$("#blog_<%= @blog.id %>_new_comment_form_div").html("<%= escape_javascript(
+  render :partial => 'form', :locals => { :comment => @comment }) %>");
+
+$("#blog_<%= @blog.id %>_new_comment_form_div").fadeIn()[0].scrollIntoView();
+
+$("#blog_<%= @blog.id %>_new_comment_link_div").hide();
+
+

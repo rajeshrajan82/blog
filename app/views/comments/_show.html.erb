@@ -1,0 +1,25 @@
+<% comment_id = comment.id.to_s %>
+<div id="comment_<%= comment_id %>_div" class="comment">
+  <div id="comment_<%= comment_id %>_top_div" class="comment_div">
+    <span id="comment_<%= comment_id %>_commontator_span" class="comment_name">
+      <%= comment.user.firstname %>
+    </span>
+    <span id="comment_<%= comment_id %>_actions_span" class="comment_actions">
+      <%= render :partial => 'comments/actions', :locals => { :comment => comment} %>
+    </span>
+  </div>
+  
+  <div id="comment_<%= comment_id %>_middle_div" class="comment_div">
+    <span id="comment_<%= comment_id %>_avatar_span" class="comment_avatar">
+      <%= image_tag("avatar.jpeg") %>
+    </span>
+    <div id="comment_<%= comment_id %>_body_div" class="comment_body">
+      <%= comment.message %>
+    </div>
+  </div>
+  <div id="comment_<%= comment_id %>_bottom_div" class="comment_div">
+    <span id="comment_<%= comment_id %>_created_timestamp_span" class="comment_timestamp">
+      <%= t('comments.posted')  %> <%= comment.created_at %>
+    </span>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<% if comment.user == current_user || (user_signed_in? && current_user.is_authorized_person?(comment.blog)) %>
+  <%= link_to t('common.actions.edit'),
+      edit_blog_comment_path(comment.blog, comment),
+      :id => "comment_#{comment.id.to_s}_edit_link",
+      :class => "comment_edit_link",
+      :remote => true %>&nbsp;|&nbsp;
+
+  <%= link_to t('common.actions.delete'), [comment.blog, comment],
+      :method => :delete,
+      :data => { confirm: t('common.confirm') },
+      :remote => true %>
+<% end %>
+
+<% if user_signed_in? && current_user.is_authorized_person?(comment.blog) %>
+   
+        <% if comment.status? %>    
+  &nbsp;|&nbsp;<%= link_to t('common.actions.unpublish'),
+      unpublish_blog_comment_path(comment.blog, comment),
+      :id => "comment_#{comment.id.to_s}_publish_link",
+      :class => "comment_edit_link",
+      :remote => true %>
+    <% else %>
+  &nbsp;|&nbsp;<%= link_to t('common.actions.publish'),
+      publish_blog_comment_path(comment.blog, comment),
+      :id => "comment_#{comment.id.to_s}_publish_link",
+      :class => "comment_edit_link",
+      :remote => true %>
+      <% end %>
+      
+<% end %>

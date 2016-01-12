@@ -1,0 +1,32 @@
+<div id="easytree_menu">
+  <% blog_types.each do |utype, bolg_utypes| %>
+    <ul>
+      <li class="isFolder <% if utype == @blog.user.type %> isExpanded <%end%>"><%= utype%>
+        <% blog_years = bolg_utypes.group_by { |y| y.created_at.beginning_of_year } %>
+        <% blog_years.sort.reverse.each do |year, bolg_years| %>
+          <ul>
+            <li class="isFolder <% if year.strftime("%G") == @blog.created_at.strftime("%G") %> isExpanded <%end%>"><%= year.strftime("%G")%>
+              <% bolg_years.group_by { |t| t.created_at.beginning_of_month }.each do |month, bolg_months| %>
+                <ul>
+                  <li class="isFolder <% if month.strftime("%B") == @blog.created_at.strftime("%B") %> isExpanded <%end%>"><%= month.strftime("%B") %>
+                    <ul>
+                      <% for blog in bolg_months %>
+                        <li>
+                          <%= link_to truncate(blog.title, :length => 25, :omission => '...'), blog_view_path(:id => blog) %>
+                        </li>   
+                      <% end %>
+                    </ul>
+                  </li>
+                </ul>
+              <% end %>
+            </li>
+          </ul>
+        <% end %>
+      </li>
+    </ul>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  $("#easytree_menu").easytree();
+</script>

@@ -1,0 +1,50 @@
+.comment {
+    font-size: 12px;
+    font-weight: normal;
+    font-style: normal;
+    border-top: 1px solid;
+    border-left: 1px solid;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #000;
+    border-color: #DDD;
+    background-color: #FFF;
+    clear: both;
+}
+.comment_name{
+    color: #666;
+}
+.comment_actions {
+    float: right;
+}
+.comment_body {
+    padding-top: 3px;
+}
+.comment_body p {
+    margin: 0px;
+    overflow: hidden;
+}
+.comment_div {
+    clear: both;
+}
+.comment_form_actions {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+.comment_form_field textarea {
+    padding: 0px;
+    width: 100%;
+}
+.comment_avatar {
+    float: left;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+.comment_timestamp {
+    color: #666;
+}

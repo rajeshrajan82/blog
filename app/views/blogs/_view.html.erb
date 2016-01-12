@@ -1,0 +1,7 @@
+<h5 class="text-right"><%= blog.user.firstname %>&nbsp;</h5>
+<h4><%= blog.title %></h4><br />
+<div><%= raw blog.content %></div><br />
+<div><%= image_tag blog.photo.url(:medium) unless blog.photo_file_name.nil?%></div><br />
+
+
+

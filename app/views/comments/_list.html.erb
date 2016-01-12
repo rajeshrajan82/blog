@@ -1,0 +1,21 @@
+<h4><%= "Comments" %></h4>
+
+<div id="blog_<%= blog.id %>_new_comment_form_div"></div>
+
+<% if user_signed_in? %>
+  <div id="blog_<%= blog.id %>_new_comment_link_div">
+    <%= link_to t('comments.new'),
+      new_blog_comment_path(blog),
+      :id => "comment_#{blog.id}_new_link",
+      :class => "comment_new_link",
+      :remote => true %>
+  </div>
+<% else %>
+  <br /><h5>Please login for adding the comments</h5>
+<% end  %>
+  
+<% unless comments.empty? %>
+  <% comments.each do |comment| %>
+    <%= render :partial => 'comments/show', :locals => { :comment => comment } %>
+  <% end %>
+<% end %>

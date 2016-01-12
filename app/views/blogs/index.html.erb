@@ -1,0 +1,51 @@
+<h3 class="caption"><%= t('blogs.name') %></h3>
+<% if user_signed_in? %>
+<div class="button_action">
+  <%= link_to show_button(t('blogs.blognew')), new_blog_path %>
+</div>
+<% end %>
+<div>
+  
+<table id="blogTable" class="tablesorter-blue">
+  <thead>
+    <tr>
+      <th><%= t('blogs.attributes.title') %></th>
+      <%  if user_signed_in? %>
+        <th><%= t('blogs.attributes.status') %></th>
+      <% end %>
+      <th><%= t('blogs.attributes.role') %></th>
+      <th><%= t('blogs.attributes.roleuser') %></th>
+      <th><%= t('blogs.attributes.created') %></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @blogs.each do |blog| %>
+      <tr>
+        <td><%= blog.title %></td>
+        <%  if user_signed_in? %>
+          <td><%= blog.status.capitalize %></td>
+        <% end %>
+        <td><%= blog.user.type %></td>
+        <td><%= blog.user.email %></td>
+        <td><%= formatted_date(blog.created_at) %></td>
+        <td class="text-center">
+            <%= link_to icon_text(t('common.actions.show'), ENV["show-icon"]), blog %>&nbsp;
+            <% if user_signed_in? && (current_user.is_admin? || current_user.is_editor? || current_user.is_owner?(blog))  %>
+              <%= link_to icon_text(t('common.actions.edit'), ENV["edit-icon"]), edit_blog_path(blog) %>&nbsp; 
+              <%= link_to icon_text(t('common.actions.delete'), ENV["delete-icon"]), blog, method: :delete, data: { confirm: t('common.confirm') } %>
+            <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+  <div class="text-right">
+        <%= paginate(@blogs) %>
+      </div>
+</div>
+<br>
+<script>
+  $("#blogTable").tablesorter();
+</script>

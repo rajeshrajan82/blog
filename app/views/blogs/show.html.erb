@@ -1,0 +1,11 @@
+<div class="col-xs-8">
+  <div class="view-blog view-blog-bg">
+    <%= render :partial => 'blogs/view', :locals => { :blog => @blog } %>
+    <% if user_signed_in? && current_user.is_authorized_person?(@blog) %>
+      <div class="actions text-center">
+        <%= link_to show_button(t('common.actions.edit')), edit_blog_path(@blog) %> <%= link_to show_button(t('common.actions.back')), blogs_path %>
+      </div>
+    <% end %>
+  </div>
+  <%= render :partial => 'blogs/comments', :locals => { :blog => @blog } %>
+</div>

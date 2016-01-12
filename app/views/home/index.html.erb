@@ -1,0 +1,17 @@
+<div class="col-xs-8">
+  <div class="view-blog view-blog-bg">
+    <%  unless @blog.nil?   %>
+    <div id="blogViewDiv">
+      <%= render :partial => 'blogs/view', :locals => { :blog => @blog } %>
+    </div>
+    <% else %>
+    <h3>No published blogs found.</h3>
+      <% end %>
+  </div>
+  <div id="commentsViewDiv">
+    <%= render :partial => 'blogs/comments', :locals => { :blog => @blog }  unless @blog.nil?  %>
+  </div>
+</div>
+<div class="col-xs-4">
+  <%= render :partial => 'blog_list_tree_view', :locals => { :blogs => @blogs, :blog_types => @blog_types }  unless @blog.nil?  %>
+</div>

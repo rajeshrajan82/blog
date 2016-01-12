@@ -1,0 +1,10 @@
+
+$("#commentsDiv").html("<%= escape_javascript(
+  render :partial => 'comments/list', :locals => { :comments => @blog.get_comments(current_user), :blog => @blog}) %>");
+
+
+
+
+
+
+
